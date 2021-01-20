@@ -25,15 +25,23 @@ def normalize(input_string):
              ex - 'this is an example.'
 
          Examples:
-             >>> import text_processing as tp
-             >>> input_string1 = "This is an example."
-             >>> tp.normalize(input_string1)
+             # >>> import text_processing as tp
+             # >>> input_string1 = "This is an example."
+             # >>> tp.normalize(input_string1)
              'this is an example.'
-             >>> input_string2 = "   EXTRA   SPACE   "
-             >>> tp.normalize(input_string2)
+             # >>> input_string2 = "   EXTRA   SPACE   "
+             # >>> tp.normalize(input_string2)
              'extra space'
     """
-    normalized_string = None
+    normalized_string = " ".join([i.lower() for i in input_string.split()])
+    '''
+    1. split()으로 문자열의 띄어쓰기를 제거하며 리스트로 변환
+        * 앞뒤 필요없는 띄어쓰기는 제거해야함
+    2. lower()으로 리스트의 원소를 소문자로 변환
+        * 모든 단어들은 소문자로 되어야함
+    3. join()으로 리스트의 원소 사이사이에 띄어쓰기를 추가하며 문자열로 변환
+        * 띄어쓰기는 한칸으로 되어야함
+    '''
     return normalized_string
 
 
@@ -50,13 +58,20 @@ def no_vowels(input_string):
             ex - "Ths s n xmpl."
 
         Examples:
-            >>> import text_processing as tp
-            >>> input_string1 = "This is an example."
-            >>> tp.normalize(input_string1)
+            # >>> import text_processing as tp
+            # >>> input_string1 = "This is an example."
+            # >>> tp.normalize(input_string1)
             "Ths s n xmpl."
-            >>> input_string2 = "We love Python!"
-            >>> tp.normalize(input_string2)
+            # >>> input_string2 = "We love Python!"
+            # >>> tp.normalize(input_string2)
             ''W lv Pythn!'
     """
-    no_vowel_string = None
+    no_vowel_string = ""
+    for i in input_string:
+        if i in ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]:
+            # input_string의 문자열 i가 a,e,i,o,u,A,E,I,O,U면 no_vowel_string에 추가하지 않는다.
+            continue
+        else:
+            # input_string의 문자열 i가 a,e,i,o,u,A,E,I,O,U가 아니면 no_vowel_string에 추가한다.
+            no_vowel_string += i
     return no_vowel_string
